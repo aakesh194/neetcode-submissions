@@ -35,3 +35,31 @@ Sorts a string's characters alphabetically and rejoins as a new string. Common f
 ```
 
 ---
+
+## tuple() as a dict key
+Use when you need to use a list as a dict key — lists aren't hashable, tuples are.
+```python
+# instead of: res[count]  → TypeError: unhashable type: 'list'
+
+# use:
+res[tuple(count)]  # tuple is immutable → hashable → valid dict key
+
+# common pattern: fixed-size count array as a canonical key
+count = [0] * 26
+for c in s:
+    count[ord(c) - ord('a')] += 1
+res[tuple(count)].append(s)
+```
+
+---
+
+## dict.values() and list()
+`dict.values()` returns a *view* — a live reference to the dict's values, not a standalone list.
+```python
+# if the return type needs List[...], wrap it:
+return list(res.values())   # converts view → actual list
+
+# res.values() alone works for iteration, but not when a list is required
+```
+
+---
