@@ -15,18 +15,26 @@ Format and tone rules for writing `notes.md`. Follow this every time.
 - **Submissions:** <count> (<language>)
 
 ## Verdict
-<One paragraph: what's actually going on across submissions. Be honest.>
+<2-4 sentences max: what's actually going on across submissions. Be honest. No fluff.>
 
 ## Submission-by-submission
 ### `submission-0.<ext>` — <one-line verdict>
-<Correctness, bugs, complexity (name the operation causing it), style issues with line refs, edge cases missed>
+```python
+<paste the relevant snippet being critiqued — not the whole file, just the key part>
+```
+<Commentary: correctness, bugs, style issues quoting actual code, edge cases missed. Bullets where natural, inline where it flows better. Time and space complexity must be stated — name the exact operation causing it.>
 
 ### `submission-1.<ext>` — <one-line verdict>
+```python
+<relevant snippet>
+```
+<Same format.>
 ...
 
 ## The textbook version
-<Canonical optimal solution with explanation. Why does it work? Why do other approaches break down? Show the code.>
-<If relevant: what wrong instincts does this problem punish — sorting when unnecessary, two pointers before ordering, etc.>
+<Canonical optimal solution with code. Why does it work? Why do other approaches break down?>
+<Call out wrong instincts this problem punishes.>
+<Time and space complexity required here too.>
 
 ## Style fixes (apply going forward)
 <Bullet list. Pull from open style debts in COACH.md plus anything new this submission introduced.>
@@ -62,6 +70,12 @@ Format and tone rules for writing `notes.md`. Follow this every time.
 
 ---
 
+## Before writing notes
+
+Check PROGRESS.md. If the previous problem's "Question for you" was never answered in their "Your turn" section, call it out at the top of the new notes before moving on.
+
+---
+
 ## What NOT to do
 
 - Don't modify `submission-N.<ext>` or `README.md`
@@ -70,3 +84,6 @@ Format and tone rules for writing `notes.md`. Follow this every time.
 - Don't grade 10/10 — if everything is strong, push on interview framing or edge cases at scale
 - Don't fill in "Interview check" or add sections when there's nothing real to say
 - Don't suggest restructuring the repo, switching languages, or adding tooling
+- **Never skip Time/Space complexity** — required for every submission and the textbook version, no exceptions
+- **Never write a submission critique without a code snippet** — anchor every comment to actual code
+- **No pure prose paragraphs in submission critiques** — commentary should be tight, specific, and use bullets where natural
