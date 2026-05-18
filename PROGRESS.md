@@ -8,9 +8,9 @@ Updated by the coach after each review session. Do not edit manually.
 
 | Habit | First flagged | Last seen | Status |
 |-------|--------------|-----------|--------|
-| Trailing semicolons | duplicate-integer | two-integer-sum | 🔴 recurring |
-| Shadowing builtins (`map`, `list`) | duplicate-integer | anagram-groups | 🔴 recurring |
-| `range(len())` instead of `enumerate` | duplicate-integer | two-integer-sum | 🔴 recurring |
+| Trailing semicolons | duplicate-integer | top-k-elements-in-list | 🔴 recurring |
+| Shadowing builtins (`map`, `list`) | duplicate-integer | top-k-elements-in-list | 🔴 recurring |
+| `range(len())` instead of `enumerate` | duplicate-integer | top-k-elements-in-list | 🔴 recurring |
 | Two-pass when one-pass works | two-integer-sum | two-integer-sum | 🔴 recurring |
 
 Status key: 🔴 recurring · 🟡 improving · 🟢 fixed (seen clean for 3+ problems)
@@ -26,6 +26,8 @@ Status key: 🔴 recurring · 🟡 improving · 🟢 fixed (seen clean for 3+ pr
 | Character counting (array vs hashmap) | is-anagram, anagram-groups | 🟡 building |
 | One-pass complement search | two-integer-sum | 🔴 shaky — two-pass used in sub-1/sub-2 |
 | Canonical key grouping (defaultdict) | anagram-groups | 🔴 shaky — solution looked up, defaultdict not yet understood |
+| Frequency map + rank extraction (top-k) | top-k-elements-in-list | 🔴 shaky — counting step solid, extraction (sort/heap/bucket) all looked up |
+| Min-heap for top-k (heapq) | top-k-elements-in-list | 🔴 shaky — used in sub-2 but pruning vs extraction pops not yet understood |
 
 Confidence key: 🔴 shaky · 🟡 building · 🟢 solid
 
@@ -38,12 +40,15 @@ Confidence key: 🔴 shaky · 🟡 building · 🟢 solid
 | duplicate-integer | 3 (2 Java, 1 Python) | 2026-05-13 | not marked |
 | is-anagram | 4 (Python) | 2026-05-13 | not marked |
 | two-integer-sum | 3 (Python) | 2026-05-13 | not marked |
-| anagram-groups | 4 (Python) | 2026-05-14 | not marked |
+| anagram-groups | 4 (Python) | 2026-05-14 | marked — redo in 1 week |
+| top-k-elements-in-list | 4 (Python) | 2026-05-18 | marked — redo in 1 week |
 
 ---
 
 ## Coach observations
 <!-- append after each session, newest first -->
+
+*2026-05-18 — top-k-elements-in-list reviewed. 4 submissions (Python). Sub-0 was an independent attempt — defaultdict used correctly for freq counting (anagram-groups pattern carried over, which is a real win), but extraction logic is fundamentally broken: iterates `range(len(freq))` against a non-integer-indexed defaultdict, and `value = i` tracks the index rather than the frequency. All three style debts (trailing semicolons, builtin shadowing `list = []`, `range(len())`) present in sub-0. Subs 1, 2, 3 all looked at the solution — sorting, heap, and bucket sort approaches respectively. Sub-2 comment shows the two-heappop pattern wasn't understood. Assist level: sub-0 independent (broken) / sub-1/2/3 looked up solution. One SYNTAX.md entry added: heapq min-heap pattern. Revisit marked for 1 week. "Your turn" sections across all problems (duplicate-integer through anagram-groups) are still largely blank — flagged again in top-k notes.*
 
 *2026-05-14 (re-review) — anagram-groups notes updated. "Your turn" was blank despite COACH.md requiring pre-fill from submission comments — fixed. Content seeded from: sub-0 comment (char map, stalled on grouping strategy), sub-2 comment (GPT-assisted), sub-3/sub-5 (explicit defaultdict and tuple gaps). Revisit marked. "Your turn" sections across ALL prior problems (duplicate-integer, is-anagram, two-integer-sum, anagram-groups) still need the user to fill in their own reflection — the pre-fills are seeds, not answers.*
 

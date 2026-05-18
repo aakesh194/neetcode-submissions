@@ -63,3 +63,28 @@ return list(res.values())   # converts view → actual list
 ```
 
 ---
+
+## heapq (min-heap)
+Python's `heapq` is always a min-heap — smallest element is at the root and comes out first on pop.
+```python
+import heapq
+
+# push: add an element (tuples sort by first element)
+heapq.heappush(heap, (count, value))
+
+# pop: removes and returns the SMALLEST element
+heapq.heappop(heap)    # returns (count, value) with the lowest count
+
+# top-k pattern — two heappops, two different jobs:
+heap = []
+for num, cnt in count.items():
+    heapq.heappush(heap, (cnt, num))
+    if len(heap) > k:
+        heapq.heappop(heap)   # PRUNING — drop the least frequent to maintain size k
+
+result = [heapq.heappop(heap)[1] for _ in range(k)]   # EXTRACTION — drain what's left
+# After the build loop, heap holds exactly the k most frequent elements.
+# The two pops do completely different things — don't confuse them.
+```
+
+---
